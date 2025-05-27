@@ -51,18 +51,18 @@ const RouteSelection: React.FC<RouteSelectionProps> = ({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-400 via-blue-400 to-purple-500 p-4 font-fredoka">
-      <div className="max-w-md mx-auto pt-8">
+      <div className="max-w-lg mx-auto pt-8">
         <div className="text-center mb-8 animate-fade-in">
           <h2 className="text-3xl font-bold text-white mb-4">{t.busPoint}</h2>
         </div>
 
         <Card className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl animate-slide-in">
           <div className="relative">
-            {/* Circle Design */}
-            <div className="w-80 h-80 mx-auto relative border-4 border-blue-300 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col justify-center items-center space-y-6">
+            {/* Circle Design - Increased size */}
+            <div className="w-96 h-96 mx-auto relative border-4 border-blue-300 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col justify-center items-center space-y-8">
               
               {/* Route Selection */}
-              <div className="w-full px-8">
+              <div className="w-full px-10">
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-sm font-semibold text-gray-700">{t.route}</label>
                   {selectedRoute && <Check size={16} className="text-green-500 mr-4" />}
@@ -86,7 +86,7 @@ const RouteSelection: React.FC<RouteSelectionProps> = ({
               </div>
 
               {/* From Selection */}
-              <div className="w-full px-8">
+              <div className="w-full px-10">
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-sm font-semibold text-gray-700">{t.from}</label>
                   {selectedFrom && <Check size={16} className="text-green-500 mr-4" />}
@@ -112,7 +112,7 @@ const RouteSelection: React.FC<RouteSelectionProps> = ({
               </div>
 
               {/* To Selection */}
-              <div className="w-full px-8">
+              <div className="w-full px-10">
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-sm font-semibold text-gray-700">{t.to}</label>
                   {selectedTo && <Check size={16} className="text-green-500 mr-4" />}
