@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import WelcomeScreen from '@/components/WelcomeScreen';
-import LanguageSelection from '@/components/LanguageSelection';
 import RouteSelection from '@/components/RouteSelection';
 import BusListings from '@/components/BusListings';
 import BusTracker from '@/components/BusTracker';
@@ -9,11 +8,11 @@ import { useLocation } from '@/hooks/useLocation';
 import { generateMockBuses } from '@/data/mockBuses';
 import { Bus } from '@/types/busTypes';
 
-type Screen = 'welcome' | 'language' | 'route' | 'buses' | 'tracker';
+type Screen = 'welcome' | 'route' | 'buses' | 'tracker';
 
 const Index = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>('welcome');
-  const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'hi' | 'ml'>('en');
+  const [selectedLanguage] = useState<'en' | 'hi' | 'ml'>('en'); // Fixed to English
   const [selectedBus, setSelectedBus] = useState<Bus | null>(null);
   const [routeData, setRouteData] = useState({ route: '', from: '', to: '' });
   const [buses, setBuses] = useState<Bus[]>([]);
@@ -24,17 +23,12 @@ const Index = () => {
     requestLocation();
   };
 
-  // Move to language selection once location is obtained
+  // Move to route selection once location is obtained
   React.useEffect(() => {
     if (coordinates) {
-      setCurrentScreen('language');
+      setCurrentScreen('route');
     }
   }, [coordinates]);
-
-  const handleLanguageSelect = (language: 'en' | 'hi' | 'ml') => {
-    setSelectedLanguage(language);
-    setCurrentScreen('route');
-  };
 
   const handleFindBuses = (routeId: string, from: string, to: string) => {
     const mockBuses = generateMockBuses(routeId, from, to);
@@ -68,11 +62,6 @@ const Index = () => {
           onLocationRequest={handleLocationRequest}
           locationLoading={loading}
         />
-      );
-    
-    case 'language':
-      return (
-        <LanguageSelection onLanguageSelect={handleLanguageSelect} />
       );
     
     case 'route':

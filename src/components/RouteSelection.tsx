@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Check, MapPin, Navigation } from 'lucide-react';
+import { Check, MapPin } from 'lucide-react';
 import { routes } from '@/data/routes';
 import { translations } from '@/data/translations';
 import { Bus, Route } from '@/types/busTypes';
@@ -50,7 +50,7 @@ const RouteSelection: React.FC<RouteSelectionProps> = ({
   const isFormValid = selectedRoute && selectedFrom && selectedTo;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-400 via-blue-400 to-purple-500 p-4 font-fredoka">
+    <div className="min-h-screen bg-gradient-to-br from-green-400 via-blue-400 to-purple-500 p-4 font-fredoka animate-gradient-x">
       <div className="max-w-lg mx-auto pt-8">
         <div className="text-center mb-8 animate-fade-in">
           <h2 className="text-3xl font-bold text-white mb-4">{t.busPoint}</h2>
@@ -63,8 +63,7 @@ const RouteSelection: React.FC<RouteSelectionProps> = ({
               
               {/* Route Selection */}
               <div className="w-full px-10">
-                <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-semibold text-gray-700">{t.route}</label>
+                <div className="flex items-center justify-end mb-2">
                   {selectedRoute && <Check size={16} className="text-green-500 mr-4" />}
                 </div>
                 <Select onValueChange={(value) => {
@@ -87,8 +86,7 @@ const RouteSelection: React.FC<RouteSelectionProps> = ({
 
               {/* From Selection */}
               <div className="w-full px-10">
-                <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-semibold text-gray-700">{t.from}</label>
+                <div className="flex items-center justify-end mb-2">
                   {selectedFrom && <Check size={16} className="text-green-500 mr-4" />}
                 </div>
                 <Select value={selectedFrom} onValueChange={setSelectedFrom}>
@@ -113,8 +111,7 @@ const RouteSelection: React.FC<RouteSelectionProps> = ({
 
               {/* To Selection */}
               <div className="w-full px-10">
-                <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-semibold text-gray-700">{t.to}</label>
+                <div className="flex items-center justify-end mb-2">
                   {selectedTo && <Check size={16} className="text-green-500 mr-4" />}
                 </div>
                 <Select value={selectedTo} onValueChange={setSelectedTo}>

@@ -46,7 +46,7 @@ const BusTracker: React.FC<BusTrackerProps> = ({
           <ArrowLeft size={24} />
         </Button>
         
-        <h2 className="text-xl font-bold">{t.whereIsMyBus}</h2>
+        <h2 className="text-xl font-bold">{t.whereIsMyBus}?</h2>
         
         <div className="w-10" /> {/* Spacer */}
       </div>
@@ -104,24 +104,27 @@ const BusTracker: React.FC<BusTrackerProps> = ({
                     {/* Stop Info */}
                     <div className="ml-4 flex-1">
                       <div className="flex items-center justify-between">
-                        <span className={`font-medium ${
-                          isCurrent ? 'text-blue-400' : 
-                          isPassed ? 'text-green-400' : 'text-gray-400'
-                        }`}>
-                          {stop}
-                        </span>
+                        <div>
+                          <span className={`font-medium ${
+                            isCurrent ? 'text-blue-400' : 
+                            isPassed ? 'text-green-400' : 'text-gray-400'
+                          }`}>
+                            {stop}
+                          </span>
+                          <div className="text-sm text-gray-500">
+                            {index} km • {Math.round((index * 2.5) + 5)} min
+                          </div>
+                        </div>
                         
-                        {(isOrigin || isDestination) && (
-                          <MapPin size={16} className="text-orange-400" />
-                        )}
-                        
-                        {isCurrent && (
-                          <Bus size={20} className="text-blue-400 animate-bounce-gentle" />
-                        )}
-                      </div>
-                      
-                      <div className="text-sm text-gray-500">
-                        {index * 1} km {/* Each stop is 1km apart */}
+                        <div className="flex items-center space-x-2">
+                          {(isOrigin || isDestination) && (
+                            <MapPin size={16} className="text-orange-400" />
+                          )}
+                          
+                          {isCurrent && (
+                            <Bus size={20} className="text-blue-400 animate-bounce-gentle" />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
