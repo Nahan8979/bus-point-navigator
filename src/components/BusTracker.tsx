@@ -37,45 +37,44 @@ const BusTracker: React.FC<BusTrackerProps> = ({
   return (
     <div className="min-h-screen bg-gray-900 text-white font-fredoka">
       {/* Header */}
-      <div className="bg-gray-800 p-3 sm:p-4 flex items-center justify-between">
+      <div className="bg-gray-800 p-4 flex items-center justify-between">
         <Button
           onClick={onBack}
           variant="ghost"
           className="text-white hover:bg-gray-700 p-2 rounded-xl"
         >
-          <ArrowLeft size={20} className="sm:w-6 sm:h-6" />
+          <ArrowLeft size={24} />
         </Button>
         
-        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold">{t.whereIsMyBus}?</h2>
+        <h2 className="text-2xl font-bold text-center flex-1">{t.whereIsMyBus}?</h2>
         
-        <div className="w-8 sm:w-10" /> {/* Spacer */}
+        <div className="w-10" /> {/* Spacer */}
       </div>
 
-      {/* Bus Info */}
-      <div className="p-3 sm:p-4 lg:p-6">
-        <Card className="bg-gray-800 border-gray-700 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
-          <div className="flex items-center justify-between mb-4">
+      {/* Content Container - Centered */}
+      <div className="flex flex-col items-center justify-center p-6 max-w-2xl mx-auto">
+        {/* Bus Info */}
+        <Card className="bg-gray-800 border-gray-700 p-6 rounded-2xl w-full mb-6">
+          <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Bus size={24} className="text-blue-400 mr-3 sm:w-8 sm:h-8" />
+              <Bus size={32} className="text-blue-400 mr-4" />
               <div>
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold">{bus.number}</h3>
-                <p className="text-sm sm:text-base text-gray-400">{selectedRoute?.name}</p>
+                <h3 className="text-2xl font-bold">{bus.number}</h3>
+                <p className="text-base text-gray-400">{selectedRoute?.name}</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-base sm:text-lg lg:text-xl font-semibold">{bus.arrival}</p>
-              <p className="text-sm sm:text-base text-gray-400">{bus.time}</p>
+              <p className="text-xl font-semibold">{bus.arrival}</p>
+              <p className="text-base text-gray-400">{bus.time}</p>
             </div>
           </div>
         </Card>
-      </div>
 
-      {/* Route Progress */}
-      <div className="p-3 sm:p-4 lg:p-6">
-        <Card className="bg-gray-800 border-gray-700 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
-          <h4 className="text-base sm:text-lg lg:text-xl font-semibold mb-4 sm:mb-6 text-center">{t.busStop}s</h4>
+        {/* Route Progress */}
+        <Card className="bg-gray-800 border-gray-700 p-6 rounded-2xl w-full">
+          <h4 className="text-xl font-semibold mb-6 text-center">{t.busStop}s</h4>
           
-          <div className="space-y-3 sm:space-y-4">
+          <div className="space-y-4">
             {routeStops.map((stop, index) => {
               const isPassed = index < currentBusPosition;
               const isCurrent = index === currentBusPosition;
@@ -86,7 +85,7 @@ const BusTracker: React.FC<BusTrackerProps> = ({
                 <div key={stop} className="flex items-center">
                   <div className="flex items-center w-full">
                     {/* Stop Indicator */}
-                    <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 flex-shrink-0 ${
+                    <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${
                       isCurrent 
                         ? 'bg-blue-500 border-blue-500 animate-pulse' 
                         : isPassed 
@@ -96,33 +95,33 @@ const BusTracker: React.FC<BusTrackerProps> = ({
                     
                     {/* Connection Line */}
                     {index < routeStops.length - 1 && (
-                      <div className={`w-1 h-6 sm:h-8 ml-1 sm:ml-1.5 -mb-3 sm:-mb-4 ${
+                      <div className={`w-1 h-8 ml-1.5 -mb-4 ${
                         isPassed ? 'bg-green-500' : 'bg-gray-600'
                       }`} />
                     )}
                     
                     {/* Stop Info */}
-                    <div className="ml-3 sm:ml-4 flex-1">
+                    <div className="ml-4 flex-1">
                       <div className="flex items-center justify-between">
                         <div>
-                          <span className={`font-medium text-sm sm:text-base ${
+                          <span className={`font-medium text-base ${
                             isCurrent ? 'text-blue-400' : 
                             isPassed ? 'text-green-400' : 'text-gray-400'
                           }`}>
                             {stop}
                           </span>
-                          <div className="text-xs sm:text-sm text-gray-500">
+                          <div className="text-sm text-gray-500">
                             {index} km • {Math.round((index * 2.5) + 5)} min
                           </div>
                         </div>
                         
-                        <div className="flex items-center space-x-1 sm:space-x-2">
+                        <div className="flex items-center space-x-2">
                           {(isOrigin || isDestination) && (
-                            <MapPin size={14} className="text-orange-400 sm:w-4 sm:h-4" />
+                            <MapPin size={16} className="text-orange-400" />
                           )}
                           
                           {isCurrent && (
-                            <Bus size={16} className="text-blue-400 animate-bounce-gentle sm:w-5 sm:h-5" />
+                            <Bus size={20} className="text-blue-400 animate-bounce-gentle" />
                           )}
                         </div>
                       </div>
